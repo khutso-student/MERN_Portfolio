@@ -3,7 +3,9 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
-import LiveChat from '../components/LiveChat';
+import Details from '../components/Details';
+
+import mainBG from '../assets/MainBG.png'
 
 import { GoHome } from "react-icons/go";
 import { BiBookContent } from "react-icons/bi";
@@ -13,7 +15,7 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { CgCommunity } from "react-icons/cg";
+import { SlEnvolope } from "react-icons/sl";
 
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
@@ -28,7 +30,8 @@ export default function MainPage() {
     const [chat, setChat] = useState(false);
 
     return(
-        <div className="w-full h-screen ">
+        <div className="w-full h-screen "
+        style={{ backgroundImage: `url(${mainBG})` }}>
             <button onClick={() => setSideNav(!sideNav)}
                 className="fixed top-5 right-5 z-20 bg-[#032d3f] hover:bg-[#032d3fa8] text-white text-[25px] cursor-pointer p-2 duration-300 rounded-full shadow-md "
                  >
@@ -37,7 +40,7 @@ export default function MainPage() {
 
             <button onClick={() => setChat(!chat)}
                 className='fixed top-5 right-20 z-20 bg-[#032d3f] hover:bg-[#032d3fa8] text-white cursor-pointer  text-[25px] p-2 duration-300 rounded-full'>
-                {chat ? <CgCommunity className='text-[#028BC5]' /> : <CgCommunity className='text-white' /> }
+                {chat ? <SlEnvolope className='text-[#028BC5]' /> : <SlEnvolope className='text-white' /> }
             </button>
            
             {/* Header */}
@@ -121,9 +124,9 @@ export default function MainPage() {
 
             {chat && (
                 <div onClick={() => setChat(false)}
-                className='fixed top-0 left-0 w-full h-full  p-2 flex justify-center sm:justify-end items-end'>
+                className='fixed top-0 left-0 w-full h-full bg-[#00000093]  p-2 flex justify-center sm:justify-center items-center'>
                     <div onClick={(e) => e.stopPropagation()}>
-                        <LiveChat />
+                        <Details />
                     </div>
                 </div>
             )}
@@ -133,7 +136,7 @@ export default function MainPage() {
                 <Home />
             </div>
 
-            <div id='about'>
+            <div id='about' className='bg-transparent'>
                 <About />
             </div>
 
