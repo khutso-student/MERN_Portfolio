@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaGithub } from "react-icons/fa";
 import worksync from '../assets/worksync.png';
+import Designs from '../components/Designs';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 const ProjectCard = ({ image, title, demoLink, githubLink, category, index }) => {
@@ -136,14 +137,12 @@ export default function Projects() {
                         </motion.div>
                     )}
 
-                    {activeTab === 'designs' && (
-                        <div className="w-full">
-                        <h2 className="text-white text-lg mb-2">Designs</h2>
-                        <p className="text-sm text-gray-300">Your design content goes here...</p>
-                        </div>
+                   {activeTab === 'designs' && (
+                    <div className="w-full">
+                        <Designs />
+                    </div>
                     )}
                 </div>
-
             </div>
         </div>
     );

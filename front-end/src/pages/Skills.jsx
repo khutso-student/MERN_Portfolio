@@ -11,6 +11,8 @@ import SQL from '../assets/SQL.png';
 import JAVA from '../assets/JAVA.png';
 import HC from '../assets/HC.png';
 import PY from '../assets/PY.png';
+import U from '../assets/U.png';
+import W from '../assets/W.png';
 import { useInView } from 'react-intersection-observer';
 
 
@@ -24,6 +26,8 @@ import { DiJavascript1 } from "react-icons/di";
 import { AiOutlinePython } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";
 import { RiShapeLine } from "react-icons/ri";
+import { TbToolsOff } from "react-icons/tb";
+import { RiWordpressFill } from "react-icons/ri";
 
 
 
@@ -53,7 +57,7 @@ const SkillCard = ({ bgImage, Icon, title, description, percentage = 0 }) => {
       return (
         <motion.div
                 ref={ref}
-                className="flex flex-col justify-center bg-[#090b15d7] w-full md:w-50 h-auto md:h-55 border border-[#65666D] rounded-lg py-5 px-4 bg-center bg-cover shadow-md cursor-pointer"
+                className="flex flex-col justify-center bg-[#090b15d7] w-full md:w-45 h-auto md:h-55 border border-[#65666D] rounded-lg py-5 px-4 bg-center bg-cover shadow-md cursor-pointer"
                 style={{ backgroundImage: `url(${bgImage})` }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,10 +86,10 @@ const SkillCard = ({ bgImage, Icon, title, description, percentage = 0 }) => {
 
 export default function Skills() {
     return(
-      <div className="w-full h-auto sm:h-screen bg-transparent bg-cover bg-center "
+      <div className="w-full h-auto sm:h-auto bg-transparent bg-cover bg-center "
         >
-        <div className="flex flex-col items-center w-full h-auto md:h-screen bg-[#000000af] pt-20 pb-4 px-2 md:pb-1">
-            <div className="flex flex-col w-full h-auto md:h-screen  max-w-[900px] py-5 px-2">
+        <div className="flex flex-col items-center w-full h-auto md:h-auto bg-[#000000af] pt-10 pb-4 px-2 md:pb-1">
+            <div className="flex flex-col w-full h-auto md:h-auto  max-w-[900px] py-5 px-2">
                 {/* Section Heading */}
                   <motion.div
                         className="flex items-center  bg-[#070911] w-40 h-12  mb-5"
@@ -130,7 +134,7 @@ export default function Skills() {
                               Icon={FaReact}
                               title="React"
                               description="Handles the front-end view layer."
-                              percentage={72}
+                              percentage={76}
                             />
 
                             <SkillCard
@@ -143,8 +147,11 @@ export default function Skills() {
                                           
                             <SkillCard bgImage={SQL} Icon={DiMysql} title="MYSQL" description="Design and manage structured." percentage={71} />
                             <SkillCard bgImage={JAVA} Icon={DiJavascript1} title="JavaScript" description="Building interactive front-end logic." percentage={68} />
-                            <SkillCard bgImage={HC} Icon={FaHtml5} title="HTML & CSS" description="Craft semantic and Style responsive using Html & Css." percentage={0} />
+                            <SkillCard bgImage={HC} Icon={FaHtml5} title="HTML & CSS" description="Craft semantic and Style responsive using Html & Css." percentage={80} />
                             <SkillCard bgImage={PY} Icon={AiOutlinePython} title="Python" description="Use Python for scripting and foundational programming concepts" percentage={58} />
+                            <SkillCard bgImage={U} Icon={TbToolsOff} title="UX/UI Designer" description="Deisgning intuitive and user-friendly interfaces using Figma and Adobe XD" percentage={80} />
+                            <SkillCard bgImage={W} Icon={RiWordpressFill} title="Wordpress" description="Building dynamic, responsive, and SEO-optimized websites" percentage={74} />
+
                     </motion.div>
                 </div>
             </div>
