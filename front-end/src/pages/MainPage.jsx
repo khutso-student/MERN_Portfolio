@@ -30,7 +30,7 @@ export default function MainPage() {
     const [chat, setChat] = useState(false);
 
     return(
-        <div className="w-full h-screen "
+        <div className="w-full h-auto md:h-screen "
         style={{ backgroundImage: `url(${mainBG})` }}>
             <button onClick={() => setSideNav(!sideNav)}
                 className="fixed top-5 right-5 z-20 bg-[#032d3f] hover:bg-[#032d3fa8] text-white text-[25px] cursor-pointer p-2 duration-300 rounded-full shadow-md "
@@ -124,7 +124,7 @@ export default function MainPage() {
 
             {chat && (
                 <div onClick={() => setChat(false)}
-                className='fixed top-0 left-0 w-full h-full bg-[#00000093]  p-2 flex justify-center sm:justify-center items-center'>
+                className='fixed top-0 z-50 left-0 w-full h-full bg-[#00000093]  p-2 flex justify-center sm:justify-center items-center'>
                     <div onClick={(e) => e.stopPropagation()}>
                         <Details />
                     </div>
@@ -150,6 +150,12 @@ export default function MainPage() {
 
             <div id='contact'>
                 <Contact />
+            </div>
+
+            <div className='flex justify-center items-center bg-[#0E1019] w-full h-18'>
+                <footer className="w-full text-center py-4 font-light text-[#ffffff91] text-sm">
+                         © {new Date().getFullYear()} K.Makunyane. All Rights Reserved.
+                </footer>
             </div>
         </div>
     )

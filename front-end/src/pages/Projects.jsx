@@ -48,8 +48,8 @@ export default function Projects() {
     const [activeTab, setActiveTab] = useState('projects');
 
     return (
-        <div className="flex justify-center items-center w-full pt-20 pb-5 px-4 bg-[#06080F]">
-            <div className="flex flex-col w-full max-w-5xl h-auto">
+        <div className="flex justify-center items-center w-full pt-20 pb-5 px-2 bg-[#06080F]">
+            <div className="flex flex-col w-full max-w-4xl  p-2 h-auto">
                 {/* Heading */}
                 <motion.div
                     className="flex items-center  bg-[#070911] w-50 h-12  mb-5"
@@ -89,9 +89,9 @@ export default function Projects() {
                 </div>
 
                 {/* Content */}
-               <div className="w-full p-4 rounded-sm">
+               <div className="w-full  rounded-sm">
                     {activeTab === 'projects' && (
-                        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                         <ProjectCard
                             image={worksync}
                             title="WorkSync"
@@ -124,6 +124,14 @@ export default function Projects() {
                             githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Software"
                             index="04"
+                        />
+                          <ProjectCard
+                            image={worksync}
+                            title="SmartBiz Digital"
+                            demoLink="https://www.smartbizdigital.co.za/"
+                            // githubLink="https://github.com/khutso-student?tab=repositories"
+                            category="Website Live"
+                            index="05"
                         />
                         </motion.div>
                     )}

@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 
-import skillBG from '../assets/skills.png'
+
 import M from '../assets/M.png';
 import E from '../assets/E.png';
 import R from '../assets/R.png';
 import N from '../assets/N.png';
+import SQL from '../assets/SQL.png';
+import JAVA from '../assets/JAVA.png';
+import HC from '../assets/HC.png';
+import PY from '../assets/PY.png';
 import { useInView } from 'react-intersection-observer';
 
 
@@ -16,8 +20,8 @@ import { FaReact } from "react-icons/fa";
 import { FaNode } from "react-icons/fa";
 import { DiMysql } from "react-icons/di";
 import { FaHtml5 } from "react-icons/fa";
-import { FaCss3 } from "react-icons/fa";
 import { DiJavascript1 } from "react-icons/di";
+import { AiOutlinePython } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";
 import { RiShapeLine } from "react-icons/ri";
 
@@ -25,55 +29,55 @@ import { RiShapeLine } from "react-icons/ri";
 
 // components/SkillCard.jsx
 
-const SkillCard = ({ bgImage, Icon, title, description }) => {
-  return (
-    <div
-      className="flex flex-col justify-center bg-[#090b15d7] w-full md:w-45 h-auto md:h-50 border border-[#65666D] rounded-lg p-3 bg-center  bg-cover"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className="flex justify-center items-center bg-[#028bc518] mb-3 w-8 h-8 rounded-full">
-        <Icon className="text-[#028BC5] text-[23px]" />
-      </div>
-      <h1 className="text-white font-semibold mb-1">{title}</h1>
-      <p className="text-[#ffffff91] text-xs font-light">{description}</p>
-    </div>
-  );
-};
+const SkillCard = ({ bgImage, Icon, title, description, percentage = 0 }) => {
+      const [count, setCount] = useState(0);
+      const { ref, inView } = useInView({ triggerOnce: true });
 
-
-const Percent = ({ Icon, title, percentage }) => {
-  const [count, setCount] = useState(0);
-  const target = parseInt(percentage);
-  const { ref, inView } = useInView({ triggerOnce: true });
-
-  useEffect(() => {
-    if (inView) {
-      let start = 0;
-      const interval = setInterval(() => {
-        start += 1;
-        if (start <= target) {
-          setCount(start);
-        } else {
-          clearInterval(interval);
+      useEffect(() => {
+        if (inView) {
+          let start = 0;
+          let increment = Math.ceil(percentage / 80); 
+          const interval = setInterval(() => {
+            start += increment;
+            if (start >= percentage) {
+              setCount(percentage);
+              clearInterval(interval);
+            } else {
+              setCount(start);
+            }
+          }, 30);
+          return () => clearInterval(interval);
         }
-      }, 60);
-      return () => clearInterval(interval);
-    }
-  }, [inView, target]);
+      }, [inView, percentage]);
 
-  return (
-    <div ref={ref} className='flex justify-between items-center bg-[#0a1621e1] w-full h-12 rounded-lg p-2 mb-2'>
-      <div className='flex items-center gap-2'>
-        <div className='flex justify-center items-center w-8 h-8 bg-[#028bc51e] rounded-full'>
-          <Icon className='text-[#028BC5] text-xl' />
-        </div>
-        <h1 className='text-white text-sm font-light'>{title}</h1>
-      </div>
-      <h1 className='text-[#028BC5] font-bold'>{count}%</h1>
-    </div>
-  );
+      return (
+        <motion.div
+                ref={ref}
+                className="flex flex-col justify-center bg-[#090b15d7] w-full md:w-50 h-auto md:h-55 border border-[#65666D] rounded-lg py-5 px-4 bg-center bg-cover shadow-md cursor-pointer"
+                style={{ backgroundImage: `url(${bgImage})` }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                whileHover={{ scale: 1.05 }}
+                viewport={{ once: true }}
+              >
+            <div className="flex justify-center items-center bg-[#028bc518] mb-3 w-8 h-8 rounded-full">
+                  <Icon className="text-[#028BC5] text-[23px]" />
+            </div>
+            <h1 className="text-white font-semibold mb-1">{title}</h1>
+            <p className="text-[#ffffff91] mb-3 text-xs font-light">{description}</p>
+            <motion.p
+                  className="text-[#028BC5] font-bold"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                {count}%
+            </motion.p>
+        </motion.div>
+
+      );
 };
-
 
 
 export default function Skills() {
@@ -81,7 +85,7 @@ export default function Skills() {
       <div className="w-full h-auto sm:h-screen bg-transparent bg-cover bg-center "
         >
         <div className="flex flex-col items-center w-full h-auto md:h-screen bg-[#000000af] pt-20 pb-4 px-2 md:pb-1">
-            <div className="flex flex-col w-full h-auto md:h-screen max-w-[1000px]">
+            <div className="flex flex-col w-full h-auto md:h-screen  max-w-[900px] py-5 px-2">
                 {/* Section Heading */}
                   <motion.div
                         className="flex items-center  bg-[#070911] w-40 h-12  mb-5"
@@ -97,45 +101,51 @@ export default function Skills() {
                 </motion.div>
 
                 {/* Main Skills Section */}
-                <div className="flex flex-col md:flex-row  gap-4 w-full h-auto py-2">
-                    {/* Left - Skill Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full  md:w-auto">
-                    <SkillCard
-                        bgImage={M}
-                        Icon={SiMongodb}
-                        title="MongoDB"
-                        description="Stores application data in flexible"
-                    />
-                    <SkillCard
-                        bgImage={E}
-                        Icon={SiExpress}
-                        title="Express.js"
-                        description="Handles routing and server-side logic."
-                    />
-                    <SkillCard
-                        bgImage={R}
-                        Icon={FaReact}
-                        title="React"
-                        description="Handles the front-end view layer"
-                    />
-                    <SkillCard
-                        bgImage={N}
-                        Icon={FaNode}
-                        title="Node.JS"
-                        description="Allows running JavaScript on the server side."
-                    />
-                    </div>
+                <div className="flex flex-col  md:flex-row  gap-4 w-full h-auto py-2">
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-4 gap-7 w-full md:w-auto"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                        viewport={{ once: true }}
+                      >
+                          <SkillCard
+                              bgImage={M}
+                              Icon={SiMongodb}
+                              title="MongoDB"
+                              description="Stores application data in flexible."
+                              percentage={75}
+                            />
 
-                    {/* Right - Percent Bars */}
-                    <div className="flex flex-col w-full md:w-1/3 bg-[#0c0e16d0] border border-[#65666D] rounded-lg p-3">
-                    <Percent Icon={FaHtml5} title="Html & CSS" percentage="80%" />
-                    <Percent Icon={DiJavascript1} title="JavaScript" percentage="75%" />
-                    <Percent Icon={FaReact} title="React" percentage="70%" />
-                    <Percent Icon={SiMongodb} title="MongoDB" percentage="77%" />
-                    <Percent Icon={DiMysql} title="MYSQL" percentage="69%" />
-                    <Percent Icon={FaNode} title="Node.JS" percentage="70%" />
-                    <Percent Icon={FaGithub} title="Git/GitHub" percentage="78%" />
-                    </div>
+                            <SkillCard
+                              bgImage={E}
+                              Icon={SiExpress}
+                              title="Express.js"
+                              description="Handles routing and server-side logic."
+                              percentage={72}
+                            />
+
+                            <SkillCard
+                              bgImage={R}
+                              Icon={FaReact}
+                              title="React"
+                              description="Handles the front-end view layer."
+                              percentage={72}
+                            />
+
+                            <SkillCard
+                              bgImage={N}
+                              Icon={FaNode}
+                              title="Node.JS"
+                              description="Allows running JavaScript on the server side."
+                              percentage={65}
+                            />
+                                          
+                            <SkillCard bgImage={SQL} Icon={DiMysql} title="MYSQL" description="Design and manage structured." percentage={71} />
+                            <SkillCard bgImage={JAVA} Icon={DiJavascript1} title="JavaScript" description="Building interactive front-end logic." percentage={68} />
+                            <SkillCard bgImage={HC} Icon={FaHtml5} title="HTML & CSS" description="Craft semantic and Style responsive using Html & Css." percentage={0} />
+                            <SkillCard bgImage={PY} Icon={AiOutlinePython} title="Python" description="Use Python for scripting and foundational programming concepts" percentage={58} />
+                    </motion.div>
                 </div>
             </div>
                 <RiShapeLine className='absolute text-[80px] text-[#0228388c] mt-100  animate-spin' />
@@ -145,3 +155,5 @@ export default function Skills() {
 
     )
 }
+
+

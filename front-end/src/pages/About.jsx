@@ -1,4 +1,3 @@
-import aboutBG from '../assets/about-bg.png';
 import about from '../assets/About.png';
 import { Typewriter } from 'react-simple-typewriter';
 import { RiShapeLine } from "react-icons/ri";
@@ -36,20 +35,19 @@ export default function About() {
 
     return (
         <main
-            className="w-full h-screen bg-transparent"
+            className="w-full h-auto md:h-screen bg-transparent"
             
         >
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full h-full bg-[#000000af] pt-5 relative">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-5 w-full h-auto md:h-full bg-[#000000af] py-5 px-2 relative">
                 {/* <RiShapeLine className="absolute text-[80px] text-[#0228388c] mb-50 animate-ping" /> */}
 
                 {/* TEXT SECTION */}
                 <motion.div
-                    className="flex flex-col justify-center w-full sm:w-1/2 h-auto p-4"
+                    className="flex flex-col justify-center w-full  sm:w-1/2 h-auto p-2"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.7 }}
-                    viewport={{ once: true }}
-                >
+                    viewport={{ once: true }} >
                     <motion.div
                         className="flex items-center  bg-[#070911] w-40 h-12  mb-5"
                         initial={{ scale: 0.9, opacity: 0 }}
@@ -125,34 +123,33 @@ export default function About() {
                 </motion.div>
 
                 {/* IMAGE SECTION */}
-                            <motion.div
-            ref={containerRef}
-            className="hidden sm:flex justify-center items-center w-100 h-100"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                perspective: 1000,
-            }}
-        >
-            <motion.div
-                className="bg-transparent border-3 border-[#028BC5] w-60 h-85 rounded-full"
-                style={{
-                    rotateX,
-                    rotateY,
-                    transformStyle: 'preserve-3d',
-                }}
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                viewport={{ once: true }}
-            >
-                <img
-                    src={about}
-                    alt="About Image"
-                    className="flex relative bottom-6 right-3"
-                />
-            </motion.div>
-        </motion.div>
+                <motion.div
+                        ref={containerRef}
+                        className="hidden sm:flex justify-center items-center  w-70 h-100"
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        style={{
+                            perspective: 1000,
+                        }} >
+                    <motion.div
+                        className="bg-transparent border-3 border-[#028BC5] w-60 h-85 rounded-full"
+                        style={{
+                            rotateX,
+                            rotateY,
+                            transformStyle: 'preserve-3d',
+                        }}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
+                        >
+                        <img
+                            src={about}
+                            alt="About Image"
+                            className="flex relative bottom-6 right-3"
+                        />
+                    </motion.div>
+                </motion.div>
             </div>
         </main>
     );
