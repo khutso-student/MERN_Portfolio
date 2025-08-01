@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { FaGithub } from "react-icons/fa";
-import worksync from '../assets/worksync.png';
 import Designs from '../components/Designs';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+
+import worksync from '../assets/worksync.png';
+import Que from '../assets/Que.png';
 
 const ProjectCard = ({ image, title, demoLink, githubLink, category, index }) => {
     return (
@@ -103,9 +105,9 @@ export default function Projects() {
                         />
 
                          <ProjectCard
-                            image={worksync}
+                            image={Que}
                             title="QueueCare"
-                            demoLink="https://work-sync-nine.vercel.app/"
+                            demoLink="https://queue-care-swart.vercel.app/"
                             githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Software"
                             index="02"

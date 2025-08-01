@@ -4,6 +4,7 @@ import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
 import Details from '../components/Details';
+import LOG from '../assets/Logo.svg';
 
 import mainBG from '../assets/MainBG.png'
 
@@ -52,13 +53,10 @@ export default function MainPage() {
                     
                     {/* Logo */}
                     <div className="flex flex-col justify-center items-center mb-4 h-20 w-full ">
-                        <a href="#home" className="text-lg md:text-2xl text-white font-bold">
-                            KHUTSO
+                        <a href="">
+                            <img src={LOG} className='w-30' alt="Logo" />
                         </a>
-
-                        <p className='text-[#028BC5] font-bold text-sm'>
-                            MERN <span className='text-white text-sm font-light'>Developer</span>
-                        </p>
+                        
                     </div>
 
                     {/* Nav Links */}
