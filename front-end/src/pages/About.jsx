@@ -79,21 +79,23 @@ export default function About() {
                         />
                     </motion.h2>
 
-                    {[
-                        "I'm a dedicated Full-Stack MERN Developer, trained at the PowerLearn Project (PLP) Academy, where I mastered the MERN stack — MongoDB, Express.js, React, and Node.js.",
-                        "I also bring strong front-end skills in HTML, CSS, JavaScript, and a solid grasp of MySQL and basic Python. I actively use Git and GitHub for version control and collaboration.",
-                        "Driven by curiosity and purpose, I focus on building efficient, maintainable, and scalable web applications that improve lives and solve problems. I specialize in building robust, user-friendly web applications and turning ideas into scalable digital solutions. With a strong foundation in both front-end and back-end development, I’ve built real-world projects that solve real-world problems. Let’s build the future, one line of code at a time."
-                    ].map((text, i) => (
-                        <motion.p
-                            key={i}
-                            className="text-white text-xs sm:text-sm font-light mb-2"
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 + i * 0.2 }}
-                        >
-                            {text}
-                        </motion.p>
-                    ))}
+                        {[
+                            "I'm a dedicated Full-Stack MERN Developer, trained at the PowerLearn Project (PLP) Academy, where I mastered the MERN stack — MongoDB, Express.js, React, and Node.js.",
+                            "I also bring strong front-end skills in HTML, CSS, JavaScript, and a solid grasp of MySQL and basic Python. I actively use Git and GitHub for version control and collaboration.",
+                            "Driven by curiosity and purpose, I focus on building efficient, maintainable, and scalable web applications that improve lives and solve problems. I specialize in building robust, user-friendly web applications and turning ideas into scalable digital solutions. With a strong foundation in both front-end and back-end development, I’ve built real-world projects that solve real-world problems. Let’s build the future, one line of code at a time.",
+                            "One of my most impactful projects to date is QueueCare — a smart queue and filing management system designed for healthcare facilities. It streamlines patient flow, reduces waiting times, and digitizes patient records, creating a smoother and more efficient experience for both patients and staff. QueueCare represents my passion for building solutions that directly address real-world challenges. And this is just the beginning — I’m continuously exploring new ideas and committed to building even more innovative projects that make a lasting impact."
+                        ].map((text, i) => (
+                            <motion.p
+                                key={i}
+                                className="text-white text-xs sm:text-sm font-light mb-2"
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.6 + i * 0.2 }}
+                            >
+                                {text}
+                            </motion.p>
+                        ))}
+
 
                     {/* BUTTONS */}
                     <motion.div

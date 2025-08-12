@@ -66,7 +66,7 @@ export default function Contact() {
             </motion.div>
 
           {/* Right Form */}
-            <motion.div
+            <div
                     className='w-full md:w-1/2 h-110 bg-[#0E1019] border border-[#ffffff1e] rounded-xl p-5'
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -123,7 +123,7 @@ export default function Contact() {
                     </button>
                   </form>
               
-            </motion.div>
+            </div>
         </div>
       </div>
     </div>

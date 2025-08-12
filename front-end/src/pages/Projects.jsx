@@ -5,6 +5,10 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 import worksync from '../assets/worksync.png';
 import Que from '../assets/Que.png';
+import QueFiling from '../assets/QueFiling.png';
+import WisePrice from '../assets/WisePrice.png';
+import LiveQueue from '../assets/LiveQueue.png';
+import SmartBiz from '../assets/SmartBiz.png';
 
 const ProjectCard = ({ image, title, demoLink, githubLink, category, index }) => {
     return (
@@ -96,45 +100,55 @@ export default function Projects() {
                     {activeTab === 'projects' && (
                         <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                         <ProjectCard
-                            image={worksync}
-                            title="WorkSync"
-                            demoLink="https://work-sync-nine.vercel.app/"
-                            githubLink="https://github.com/khutso-student?tab=repositories"
-                            category="Software"
-                            index="01"
-                        />
-
-                         <ProjectCard
                             image={Que}
                             title="QueueCare"
                             demoLink="https://queue-care-swart.vercel.app/"
                             githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Software"
+                            index="01"
+                        />
+
+                        <ProjectCard
+                            image={QueFiling}
+                            title="QueueCare Filing"
+                            demoLink="https://queue-care-swart.vercel.app/"
+                            githubLink="https://github.com/khutso-student?tab=repositories"
+                            category="Software"
                             index="02"
                         />
-                         <ProjectCard
+
+                        <ProjectCard
                             image={worksync}
-                            title="Wise ShopKeeper"
-                            demoLink="https://price-wise-shopkeeper.vercel.app/"
+                            title="WorkSync"
+                            demoLink="https://work-sync-nine.vercel.app/"
                             githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Software"
                             index="03"
                         />
+
                          <ProjectCard
-                            image={worksync}
-                            title="clinic-queue-hero"
-                            demoLink="https://work-sync-nine.vercel.app/"
+                            image={WisePrice}
+                            title="Wise ShopKeeper"
+                            demoLink="https://price-wise-shopkeeper.vercel.app/"
                             githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Software"
                             index="04"
                         />
+                         <ProjectCard
+                            image={LiveQueue}
+                            title="Live Queue"
+                            demoLink="https://clinic-queue-hero.vercel.app/"
+                            githubLink="https://github.com/khutso-student?tab=repositories"
+                            category="Software"
+                            index="05"
+                        />
                           <ProjectCard
-                            image={worksync}
+                            image={SmartBiz}
                             title="SmartBiz Digital"
                             demoLink="https://www.smartbizdigital.co.za/"
                             // githubLink="https://github.com/khutso-student?tab=repositories"
                             category="Website Live"
-                            index="05"
+                            index="06"
                         />
                         </motion.div>
                     )}
