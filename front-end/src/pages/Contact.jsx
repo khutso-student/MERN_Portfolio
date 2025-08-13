@@ -25,9 +25,10 @@ export default function Contact() {
     message: ""
   });
 
-  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  // Use environment variables for production, fallback to development defaults
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "your_dev_service_id";
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "your_dev_template_id";
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "your_dev_public_key";
 
   const handleChange = (e) => {
     setFormData({
@@ -39,10 +40,13 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      console.error("❌ Missing EmailJS configuration in environment variables.");
-      toast.error("Email service is not configured. Please contact site admin.", { theme: "dark" });
-      return;
+    // Warn if production env variables are missing
+    if (!import.meta.env.VITE_EMAILJS_SERVICE_ID ||
+        !import.meta.env.VITE_EMAILJS_TEMPLATE_ID ||
+        !import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
+      console.warn(
+        "⚠️ Running in development/fallback mode with default EmailJS keys."
+      );
     }
 
     emailjs
