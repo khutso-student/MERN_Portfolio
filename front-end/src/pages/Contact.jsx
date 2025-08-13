@@ -25,6 +25,8 @@ export default function Contact() {
     message: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Determine environment mode
   const isProd = import.meta.env.PROD;
 
@@ -47,6 +49,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     // Use production keys if in prod, otherwise use dev fallback
     const activeServiceId = isProd ? SERVICE_ID : DEV_SERVICE_ID;
@@ -99,7 +102,8 @@ export default function Contact() {
         draggable: true,
         theme: "dark",
       });
-    });
+    })
+     .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -176,9 +180,41 @@ export default function Contact() {
                   rows="4" className='bg-[#ffffff1c] text-white text-sm py-2 px-4 w-full rounded-md outline-none resize-none' required></textarea>
               </div>
 
-              <button type="submit"
-                className='bg-[#028BC5] hover:bg-[#0273a6] text-white text-sm font-medium py-2 px-6 rounded-md transition duration-200'>
-                Send Message
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="relative bg-[#028BC5] hover:bg-[#0273a6] text-white text-sm font-medium py-2 px-6 rounded-md flex items-center justify-center transition-all duration-300 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 w-full"
+              >
+                {/* Spinner (absolute, centered) */}
+                {isSubmitting && (
+                  <span className="absolute flex items-center justify-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                  </span>
+                )}
+
+                {/* Button Text */}
+                <span className={`transition-opacity duration-300 ${isSubmitting ? "opacity-50" : "opacity-100"}`}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </span>
               </button>
             </form>
           </div>
