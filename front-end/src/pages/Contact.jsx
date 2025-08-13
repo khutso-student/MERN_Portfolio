@@ -25,10 +25,18 @@ export default function Contact() {
     message: ""
   });
 
-  // Use environment variables for production, fallback to development defaults
-  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "your_dev_service_id";
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "your_dev_template_id";
-  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "your_dev_public_key";
+  // Determine environment mode
+  const isProd = import.meta.env.PROD;
+
+  // Production keys (must be set in Vercel or .env.production)
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  // Development fallback keys
+  const DEV_SERVICE_ID = "your_dev_service_id";
+  const DEV_TEMPLATE_ID = "your_dev_template_id";
+  const DEV_PUBLIC_KEY = "your_dev_public_key";
 
   const handleChange = (e) => {
     setFormData({
@@ -40,51 +48,58 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Warn if production env variables are missing
-    if (!import.meta.env.VITE_EMAILJS_SERVICE_ID ||
-        !import.meta.env.VITE_EMAILJS_TEMPLATE_ID ||
-        !import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
-      console.warn(
-        "⚠️ Running in development/fallback mode with default EmailJS keys."
-      );
+    // Use production keys if in prod, otherwise use dev fallback
+    const activeServiceId = isProd ? SERVICE_ID : DEV_SERVICE_ID;
+    const activeTemplateId = isProd ? TEMPLATE_ID : DEV_TEMPLATE_ID;
+    const activePublicKey = isProd ? PUBLIC_KEY : DEV_PUBLIC_KEY;
+
+    // If production and any key is missing, show error
+    if (isProd && (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY)) {
+      console.error("❌ Missing EmailJS production keys!");
+      toast.error("Email service is not configured. Please contact site admin.", { theme: "dark" });
+      return;
     }
 
-    emailjs
-      .send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          industry: formData.industry,
-          message: formData.message
-        },
-        PUBLIC_KEY
-      )
-      .then(() => {
-        toast.success("✅ Message sent successfully!", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-        });
-        setFormData({ name: "", email: "", industry: "", message: "" });
-      })
-      .catch((err) => {
-        console.error("❌ EmailJS Error:", err);
-        toast.error("Failed to send message. Please try again.", {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-        });
+    if (!isProd) {
+      console.warn("⚠️ Running in development mode with fallback EmailJS keys.");
+      toast.info("Development mode: using fallback EmailJS keys.", { theme: "dark" });
+    }
+
+    emailjs.send(
+      activeServiceId,
+      activeTemplateId,
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        industry: formData.industry,
+        message: formData.message
+      },
+      activePublicKey
+    )
+    .then(() => {
+      toast.success("✅ Message sent successfully!", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
       });
+      setFormData({ name: "", email: "", industry: "", message: "" });
+    })
+    .catch((err) => {
+      console.error("❌ EmailJS Error:", err);
+      toast.error("Failed to send message. Please try again.", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+    });
   };
 
   return (
