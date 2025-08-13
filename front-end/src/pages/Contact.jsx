@@ -145,10 +145,8 @@ export default function Contact() {
                 <select name="industry" value={formData.industry} onChange={handleChange}
                   className='bg-[#ffffff1c] text-white text-sm py-2 px-4 w-full rounded-md outline-none' required>
                   <option value="">Select your industry</option>
-                  <option value="Web Development">Web Development</option>
-                  <option value="Web Design">Web Design</option>
-                  <option value="App Design">App Design</option>
-                  <option value="Software Design">Software Design</option>
+                  <option value="Software Development">Software Development</option>
+                  <option value="UX/UI Design">UX/UI Design</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
