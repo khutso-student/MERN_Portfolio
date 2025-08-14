@@ -6,6 +6,8 @@ import WaxMovies from '../assets/WaxMovies.png';
 import Plants from '../assets/PlantsLogin.png';
 import TruckDebo from '../assets/TruckDEBO.png'
 import Queue from '../assets/QueueCare.png';
+import Adidas from '../assets/Adidas.png';
+import Meetify from '../assets/Meetify.png';
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
 
 const DesignCard = ({ image, title, subtitle }) => {
@@ -70,7 +72,8 @@ export default function Designs() {
       <DesignCard image={Plants} title="Plants Login" subtitle="App Design" />
       <DesignCard image={TruckDebo} title="Truck DEBO" subtitle="App Design" />
       <DesignCard image={Queue} title="QueueCare" subtitle="Software Design" />
-
+      <DesignCard image={Adidas} title="Adidas Product" subtitle="Product Design" />
+      <DesignCard image={Meetify} title="Meetify" subtitle="Software" />
 
     </div>
   );

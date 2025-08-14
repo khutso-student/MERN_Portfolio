@@ -3,7 +3,6 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
-import Details from '../components/Details';
 import LOG from '../assets/Logo.svg';
 
 import mainBG from '../assets/MainBG.png'
@@ -39,10 +38,7 @@ export default function MainPage() {
                 {sideNav ? <HiOutlineMenuAlt3 className='hover:rotate-180 duration-300' /> : <HiOutlineMenuAlt2 className='hover:rotate-180 duration-300' />}
             </button>
 
-            <button onClick={() => setChat(!chat)}
-                className='fixed top-5 right-20 z-20 bg-[#032d3f] hover:bg-[#032d3fa8] text-white cursor-pointer  text-[25px] p-2 duration-300 rounded-full'>
-                {chat ? <SlEnvolope className='text-[#028BC5]' /> : <SlEnvolope className='text-white' /> }
-            </button>
+   
            
             {/* Header */}
 
@@ -105,10 +101,11 @@ export default function MainPage() {
                             <a href="https://www.facebook.com/khutso.makunyane.2025/"><FaFacebookF className='text-white' /></a>
                             <a href="https://www.instagram.com/mern_engineer/?next=%2F"><FaInstagram className='text-white' /></a>
                         </div>
-                    <a href="#"
+                    <a href="#about"
                         className="bg-[#032d3f60] hover:bg-[#032d3fa1] text-white text-xs sm:text-sm px-1.5 py-2  rounded-md block text-center"
                     >
                         Download CV
+                        
                     </a>
 
                       <footer className="w-full text-center py-4 text-white text-sm">
@@ -120,14 +117,7 @@ export default function MainPage() {
                 </div>
             </div>
 
-            {chat && (
-                <div onClick={() => setChat(false)}
-                className='fixed top-0 z-50 left-0 w-full h-full bg-[#00000093]  p-2 flex justify-center sm:justify-center items-center'>
-                    <div onClick={(e) => e.stopPropagation()}>
-                        <Details />
-                    </div>
-                </div>
-            )}
+  
 
             
             <div id='home'>

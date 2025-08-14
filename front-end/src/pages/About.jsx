@@ -1,6 +1,9 @@
 import about from '../assets/About.png';
 import { Typewriter } from 'react-simple-typewriter';
 import { RiShapeLine } from "react-icons/ri";
+import { MdOutlineDownloading } from "react-icons/md";
+import { GrAppsRounded } from "react-icons/gr";
+
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useRef, useEffect } from 'react';
@@ -110,18 +113,22 @@ export default function About() {
                             download="MERN Cv.pdf"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-[#070911] text-[#028BC5] text-sm py-2 px-4 border border-[#028BC5] rounded-lg mr-4 hover:border-white hover:text-white duration-300"
+                            className="flex justify-center items-center bg-[#070911] text-[#028BC5] text-sm py-2 px-2 border border-[#028BC5] rounded-lg mr-4 hover:border-white hover:text-white duration-300"
                         >
-                            Download Cv
+                            <MdOutlineDownloading className='mr-2' />
+                            Download Cv 
+                     
                         </motion.a>
 
                         <motion.a
                             href="#project"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-[#070911] text-[#fff] text-sm py-2 px-4 border border-[#fff] rounded-lg mr-4 hover:border-[#028BC5] hover:text-[#028BC5] duration-300"
+                            className="flex justify-center items-center bg-[#070911] text-[#fff] text-sm py-2 px-2 border border-[#fff] rounded-lg mr-4 hover:border-[#028BC5] hover:text-[#028BC5] duration-300"
                         >
+                            <GrAppsRounded  className='mr-2'/>
                             View Projects
+                            
                         </motion.a>
                     </motion.div>
                 </motion.div>
