@@ -4,6 +4,7 @@ import { RiShapeLine } from "react-icons/ri";
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import CV from '../assets/MERN Cv.pdf';
 
 
 export default function About() {
@@ -105,7 +106,8 @@ export default function About() {
                         transition={{ delay: 1.2 }}
                     >
                         <motion.a
-                            href=""
+                            href={CV}
+                            download="MERN Cv.pdf"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="bg-[#070911] text-[#028BC5] text-sm py-2 px-4 border border-[#028BC5] rounded-lg mr-4 hover:border-white hover:text-white duration-300"
