@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import about from '../assets/About.png';
 import { Typewriter } from 'react-simple-typewriter';
 import { RiShapeLine } from "react-icons/ri";
@@ -7,12 +8,16 @@ import { GrAppsRounded } from "react-icons/gr";
 
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useRef, useEffect } from 'react';
-import CV from '../assets/MERN Cv.pdf';
+import MERN from '../assets/MERN Cv.pdf';
+import UI from '../assets/UI Cv.pdf';
+
+
 
 
 export default function About() {
 
-        const containerRef = useRef(null);
+    const [model, setModel] = useState(false)
+    const containerRef = useRef(null);
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
@@ -108,7 +113,7 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2 }}
                     >
-                        <motion.a
+                        {/* <motion.a
                             href={CV}
                             download="MERN Cv.pdf"
                             whileHover={{ scale: 1.05 }}
@@ -118,7 +123,15 @@ export default function About() {
                             <MdOutlineDownloading className='mr-2' />
                             Download Cv 
                      
-                        </motion.a>
+                        </motion.a> */}
+
+                        <motion.button onClick={() => setModel(!model)}
+                          whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex justify-center items-center bg-[#070911] text-[#028BC5] text-sm py-2 px-2 border border-[#028BC5] cursor-pointer rounded-lg mr-4 hover:border-white hover:text-white duration-300">
+                                <MdOutlineDownloading className='mr-2' />
+                                Download Cv
+                        </motion.button>
 
                         <motion.a
                             href="#project"
@@ -162,6 +175,52 @@ export default function About() {
                     </motion.div>
                 </motion.div>
             </div>
+
+          {model && (
+                <motion.div
+                    onClick={() => setModel(false)}
+                    className="fixed top-0 left-0 w-full h-full bg-[#00000085] flex justify-center items-center z-50"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+   
+                    >
+                    <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex flex-col justify-center items-center gap-3 bg-[#021016] w-80 p-5 rounded-md border-2 border-[#3d7e97] shadow-lg"
+                       initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                   >
+                    <p className="text-gray-300 text-sm mb-3">Choose CV to download</p>
+
+                    <div className="flex justify-center items-center gap-3 w-full">
+                        {/* MERN CV */}
+                        <a
+                        href={MERN}
+                        download="Khutso_MERN_CV.pdf"
+                        className="flex items-center gap-2 bg-[#028BC5] hover:bg-[#022f42] text-gray-100 text-sm px-4 py-2 rounded-md duration-300"
+                        >
+                        <MdOutlineDownloading size={18} />
+                        MERN CV
+                        </a>
+
+                        {/* UI/UX CV */}
+                        <a
+                        href={UI}
+                        download="Khutso_UI_CV.pdf"
+                        className="flex items-center gap-2 bg-[#028BC5] hover:bg-[#022f42] text-gray-100 text-sm px-4 py-2 rounded-md duration-300"
+                        >
+                        <MdOutlineDownloading size={18} />
+                        UI/UX CV
+                        </a>
+                    </div>
+                    </div>
+                </motion.div>
+                )}
+
         </main>
     );
 }
